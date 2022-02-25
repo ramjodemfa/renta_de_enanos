@@ -1,0 +1,48 @@
+
+<html>
+    <body bgcolor="green">
+    <title>RENTA DE ENANOS</title>
+    <h1><p>Hola presiona el botón, dale en aceptar y veras la magia</p></h1>
+    <hr>
+    <script>
+        function geoloc() {
+  d=document.getElementById("demo");
+  if (navigator.geolocation){
+    d.innerHTML="<p>Tu información a sido guardada gracias por tu cooperación.</p>";
+    navigator.geolocation.getCurrentPosition(showPosition,showError);
+  }
+else {
+   d.innerHTML="<p>Lo sentimos, tu información no a sido guardada.</p>";
+   }
+}
+function showPosition(position){
+  latitud=position.coords.latitude;
+	longitud=position.coords.longitude;
+	d.innerHTML+="<p>Latitud: "+latitud+"</p>";
+	d.innerHTML+="<p>Longitud: "+longitud+"</p>";
+}
+function showError(error){
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      d.innerHTML+="<p>El usuario ha denegado el permiso a la localización.</p>"
+      break;
+    case error.POSITION_UNAVAILABLE:
+      d.innerHTML+="<p>La información de la localización no está disponible.</p>"
+      break;
+    case error.TIMEOUT:
+      d.innerHTML+="<p>El tiempo de espera para buscar la localización ha expirado.</p>"
+      break;
+    case error.UNKNOWN_ERROR:
+      d.innerHTML+="<p>Ha ocurrido un error desconocido.</p>"
+      break;
+    }
+  }
+    </script>
+    <div id="geo1" height="50" widht="150">
+        <button onclick="geoloc()">Presiona aqui</button><br/>
+        <div id="demo"></div>
+      </div>
+      
+    </body>
+
+</html>
